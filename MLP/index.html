@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>POS - Crochet Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+        <div class="brand-sm">MiniLikha</div>
+        <button id="toggleSidebar" aria-label="Toggle navigation" class="btn-ghost" title="Collapse sidebar">≡</button>
+      </div>
+      <nav class="nav" role="navigation" aria-label="Primary">
+        <button id="navProducts" class="active" data-panel="products" aria-controls="panelProducts" aria-label="Show Products"><span class="icon">🧶</span><span class="label">Products</span></button>
+        <button id="navCart" data-panel="cart" aria-controls="panelCart" aria-label="Show Cart"><span class="icon">🛒</span><span class="label">Cart</span> <span id="cartBadge" class="badge" style="margin-left:8px;">0</span></button>
+        <button id="navAdmin" data-panel="admin" aria-controls="panelAdmin" aria-label="Show Admin" style="display:none"><span class="icon">⚙️  </span><span class="label">  Admin</span></button>
+        <button id="navLogout" aria-label="Logout"><span class="icon">➜]</span><span class="label">Logout</span></button>
+      </nav>
+    </aside>
+    <main class="content">
+      <section id="panelProducts" class="panel">
+        <h2>Products</h2>
+        <div id="productsGrid" class="grid"></div>
+      </section>
+
+      <section id="panelCart" class="panel" style="display:none">
+        <h2>Cart</h2>
+        <div class="panel-inner">
+          <div class="cart-items-box">
+            <div id="cartList"></div>
+          </div>
+          <div class="checkout-box">
+            <div class="cart-section-label">Order summary</div>
+            <div class="summary-row"><span>Total</span><span id="cartTotal">PHP 0.00</span></div>
+            <div class="cash-field">
+              <label>Cash received</label>
+              <input type="number" id="cashInput" placeholder="PHP 0.00">
+            </div>
+            <div id="changeRow" style="display:none"><span class="change-label">Change</span><span id="changeOut">PHP 0.00</span></div>
+            <button id="checkoutBtn" class="btn primary">Checkout</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="panelAdmin" class="panel" style="display:none">
+        <h2>Admin</h2>
+        <form id="productForm">
+  <input type="hidden" id="pId">
+
+  <div class="admin-form-card">
+    <div class="admin-form-header">
+      <span class="admin-form-title" id="formModeLabel">Add product</span>
+      <span class="editing-pill" id="editingPill" style="display:none"></span>
+    </div>
+
+    <div id="productFormError" class="form-err-msg" role="alert" aria-live="assertive" style="display:none"></div>
+
+    <div class="admin-form-grid">
+      <div class="form-field">
+        <label for="pName">Name</label>
+        <input id="pName" required placeholder="Product name">
+      </div>
+      <div class="form-field">
+        <label for="pPrice">Price (PHP)</label>
+        <input id="pPrice" type="number" min="0" step="0.01" required placeholder="0.00">
+      </div>
+      <div class="form-field">
+        <label for="pStock">Stock</label>
+        <input id="pStock" type="number" min="0" step="1" required placeholder="0">
+      </div>
+    </div>
+
+    <div class="admin-image-row">
+      <div class="admin-img-preview-box">
+        <img id="pPreview" alt="Preview" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:9px;">
+        <span id="pPreviewPlaceholder" style="font-size:11px;color:rgba(0,0,0,0.3)">image</span>
+      </div>
+      <div class="admin-image-inputs">
+        <input id="pImageUrl" placeholder="Image URL (https://...)" aria-label="Product image URL">
+        <label class="upload-file-label">
+          Upload photo
+          <input id="pImageFile" type="file" accept="image/*" aria-label="Upload product image" style="display:none">
+        </label>
+      </div>
+    </div>
+
+    <div class="admin-form-actions">
+      <button id="pSubmit" class="btn primary" type="submit">Add product</button>
+      <button id="pCancel" type="button" class="btn-ghost" style="display:none">Cancel</button>
+    </div>
+  </div>
+</form>
+        <hr>
+        <h3>Products</h3>
+        <div id="adminProducts"></div>
+        <hr>
+        <h3>Archived Products</h3>
+        <div id="archivedProducts" class="muted">No archived products</div>
+        <hr>
+        <h3>Sales</h3>
+        <div id="salesList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" style="display:none"></div>
+
+  <div id="confirmModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none">
+    <div class="modal-content">
+      <div id="confirmMessage">Are you sure?</div>
+      <div style="margin-top:12px">
+        <button id="confirmYes" class="btn primary">Yes, delete</button>
+        <button id="confirmNo" class="btn-ghost" style="margin-left:8px">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Basic session check — run after DOM is ready to avoid timing issues
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        const user = getCurrentUser && getCurrentUser();
+        if(!user){ window.location.href = 'login.html'; return; }
+        if(user && user.isAdmin){ const el = document.getElementById('navAdmin'); if(el) el.style.display = 'block'; }
+      } catch(e){
+        console.error('Session check failed', e);
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+</body>
+</html>

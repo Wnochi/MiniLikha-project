@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Crochet POS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-card">
+        <div class="form-side">
+            <h1>Sign Up</h1>
+
+            <form id="registerForm">
+              <div class="input-field">
+                  <label for="name">User name</label>
+                  <input type="text" id="name" required>
+                  <i class="fas fa-user"></i>
+              </div>
+
+              <div class="input-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" required>
+                  <i class="fas fa-envelope"></i>
+              </div>
+
+              <div class="input-field">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" required>
+                  <i class="fas fa-lock"></i>
+              </div>
+
+              <button type="submit" class="signup-btn">Sign Up</button>
+              <p class="footer-text">Already have an account? <a href="login.html">Login</a></p>
+              <div id="regError" class="error"></div>
+            </form>
+        </div>
+
+        <div class="image-side">
+            <div class="image-container">
+                <img src="https://askbart.org/wp-content/uploads/2025/02/delicate_floral_puff_design.jpg" alt="Decorative">
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+      document.getElementById('registerForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const errEl = document.getElementById('regError');
+        errEl.textContent = '';
+        const res = registerUser({name, email, password});
+        if(res && res.success){ window.location.href = 'index.html'; }
+        else { errEl.textContent = (res && res.message) ? res.message : 'Registration failed'; }
+      });
+    </script>
+</body>
+</html>

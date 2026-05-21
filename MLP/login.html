@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Crochet POS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="logo-wrap">
+      <img src="POS_logo.jpg" alt="Minilikha logo" class="site-logo">
+    </div>
+    <main class="main-card">
+      <section class="form-side">
+        <h1>Welcome Back</h1>
+        <form id="loginForm">
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="you@example.com">
+          </div>
+
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" required placeholder="Password">
+          </div>
+
+          <button type="submit" class="signup-btn">Login</button>
+          <div id="loginError" class="error"></div>
+          <div class="footer-text">Don't have an account? <a href="register.html">Register</a></div>
+        </form>
+      </section>
+
+      <aside class="image-side">
+        <div class="image-container">
+          <img src="https://www.thesprucecrafts.com/thmb/3loI7nKT4t7-9JDqDME2Kur4tkw=/2507x3760/filters:fill(auto,1)/beautiful-beaded-crochet-project-622205580-5b01d9a0ae9ab80036a2faf7.jpg" alt="Decorative">
+        </div>
+      </aside>
+    </main>
+  <script src="auth.js"></script>
+  <script>
+    // Simple binding for login form
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errEl = document.getElementById('loginError');
+      errEl.textContent = '';
+      const res = loginUser(email, password);
+      if(res.success){
+        // Redirect to main POS
+        window.location.href = 'index.html';
+      } else {
+        errEl.textContent = res.message;
+      }
+    });
+  </script>
+</body>
+</html>

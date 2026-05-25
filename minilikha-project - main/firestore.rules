@@ -1,0 +1,63 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // 1. Products Collection Rules
+    match /products/{productId} {
+      // Anyone (even unauthenticated customers) can browse the catalog
+      allow read: if true;
+      
+      // Only UIDs listed in admins/{uid} can manage products
+      allow write: if isAdmin();
+    }
+
+    // 2. Orders Collection Rules
+    match /orders/{orderId} {
+      // Signed-in customers can place their own orders
+      allow create: if signedIn() && request.resource.data.customerUid == request.auth.uid;
+      
+      // Admin can process all orders; customers can read their own orders later
+      allow read: if isAdmin() || (signedIn() && resource.data.customerUid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    // 3. Customer profiles. Customers manage only their own registration details.
+    match /customers/{customerUid} {
+      allow read, create, update: if signedIn() && request.auth.uid == customerUid;
+      allow delete: if isAdmin() || (signedIn() && request.auth.uid == customerUid);
+    }
+
+    // 4. Pre-order capacity. Admin manages it; signed-in checkout may only reduce slotsLeft.
+    match /settings/preorder {
+      allow read: if true;
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (
+        signedIn()
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(['slotsLeft'])
+        && request.resource.data.slotsLeft is number
+        && request.resource.data.slotsLeft >= 0
+        && request.resource.data.slotsLeft < resource.data.slotsLeft
+      );
+    }
+
+    // 5. Public storefront settings, admin-managed
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 6. Admin allowlist. Create admins/{adminUid} manually in Firestore.
+    match /admins/{adminUid} {
+      allow read: if signedIn() && request.auth.uid == adminUid;
+      allow write: if isAdmin();
+    }
+  }
+}

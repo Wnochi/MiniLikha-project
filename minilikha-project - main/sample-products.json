@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Crochet Tulip Bouquet",
+    "description": "A handmade crochet flower bouquet arranged as a lasting gift piece.",
+    "price": 450,
+    "variations": ["Pink", "Yellow", "Purple"],
+    "category": "Bouquet",
+    "status": "Active",
+    "sortOrder": 1,
+    "imageUrl": "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=800",
+    "tags": ["bouquet", "flower", "gift"],
+    "featured": true
+  },
+  {
+    "name": "Mini Crochet Keychain",
+    "description": "A small crochet charm for bags, keys, or simple personalized gifts.",
+    "price": 120,
+    "variations": ["Blue", "Green", "Yellow"],
+    "category": "Keychain",
+    "status": "Active",
+    "sortOrder": 2,
+    "imageUrl": "https://images.unsplash.com/photo-1611042553365-9b101441c135?w=800",
+    "tags": ["keychain", "accessory"],
+    "featured": true
+  },
+  {
+    "name": "Crochet Tote Bag",
+    "description": "A soft textured tote made for light daily carry and casual styling.",
+    "price": 780,
+    "variations": ["Cream", "Brown", "Black"],
+    "category": "Bag",
+    "status": "Active",
+    "sortOrder": 3,
+    "imageUrl": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800",
+    "tags": ["bag", "tote"],
+    "featured": true
+  },
+  {
+    "name": "Amigurumi Plush Doll",
+    "description": "A small stuffed crochet character made with gentle yarn and careful stitching.",
+    "price": 520,
+    "variations": ["Bear", "Bunny", "Cat"],
+    "category": "Amigurumi",
+    "status": "Draft",
+    "sortOrder": 4,
+    "imageUrl": "https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=800",
+    "tags": ["amigurumi", "plush", "gift"],
+    "featured": false
+  },
+  {
+    "name": "Crochet Hair Clip Pair",
+    "description": "A pair of handmade crochet hair clips with a soft floral finish.",
+    "price": 180,
+    "variations": ["White Daisy", "Pink Flower", "Sunflower"],
+    "category": "Accessory",
+    "status": "Active",
+    "sortOrder": 5,
+    "imageUrl": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800",
+    "tags": ["hair clip", "accessory"],
+    "featured": false
+  },
+  {
+    "name": "Custom Crochet Coaster Set",
+    "description": "A made-to-order set of crochet coasters for warm drinks and table styling.",
+    "price": 260,
+    "variations": ["Round", "Flower", "Square"],
+    "category": "Home",
+    "status": "Draft",
+    "sortOrder": 6,
+    "imageUrl": "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800",
+    "tags": ["coaster", "home"],
+    "featured": false
+  }
+]

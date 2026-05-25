@@ -5,7 +5,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAIO0CIPpquFaPVC9abijjfPQArU4Uzwxc",
+    apiKey: "",
     authDomain: "minilikha-store.firebaseapp.com",
     projectId: "minilikha-store",
     storageBucket: "minilikha-store.firebasestorage.app",

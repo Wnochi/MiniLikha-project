@@ -1,0 +1,337 @@
+:root {
+    --admin-pink: #ff4fa3;
+    --admin-pink-mid: #ff8da4;
+    --admin-pink-soft: #ffd6e8;
+    --admin-nav: #f0cad5;
+    --admin-ice: #eef5f5;
+    --admin-ink: #28222a;
+    --admin-muted: #66737a;
+    --admin-line: rgba(255, 79, 163, 0.18);
+    --admin-shadow: 0 18px 48px rgba(255, 79, 163, 0.12);
+    --admin-shadow-strong: 0 24px 60px rgba(255, 79, 163, 0.18);
+    --admin-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.admin-body {
+    color: var(--admin-ink);
+    font-family: "Poppins", Arial, sans-serif !important;
+    background:
+        radial-gradient(ellipse at 8% 6%, rgba(255, 214, 232, 0.72), transparent 33rem),
+        radial-gradient(ellipse at 92% 14%, rgba(240, 232, 255, 0.62), transparent 28rem),
+        radial-gradient(ellipse at 78% 88%, rgba(223, 249, 242, 0.74), transparent 32rem),
+        linear-gradient(135deg, var(--admin-ice), #f7fcff 54%, #fff0f7);
+    background-attachment: fixed;
+}
+
+#admin-sidebar {
+    border-right: 1px solid rgba(255, 143, 199, 0.24) !important;
+    background: rgba(240, 202, 213, 0.78) !important;
+    box-shadow: 18px 0 48px rgba(255, 79, 163, 0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+#admin-sidebar .h-9 {
+    border-radius: var(--admin-radius) !important;
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--admin-pink), var(--admin-pink-mid)) !important;
+    box-shadow: 0 12px 26px rgba(255, 79, 163, 0.24);
+}
+
+#admin-sidebar h1 {
+    font-size: 1rem !important;
+    font-weight: 900 !important;
+}
+
+.nav-btn {
+    border: 1px solid transparent !important;
+    border-radius: var(--admin-radius) !important;
+    color: rgba(40, 34, 42, 0.76) !important;
+    background: rgba(255, 255, 255, 0.42) !important;
+    font-weight: 800 !important;
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease !important;
+}
+
+.nav-btn:hover {
+    color: var(--admin-pink) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    transform: translateX(3px);
+}
+
+.nav-btn[class*="bg-[#FF8DA4]"] {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--admin-pink), var(--admin-pink-mid)) !important;
+    box-shadow: 0 14px 28px rgba(255, 79, 163, 0.22);
+}
+
+.nav-btn[class*="bg-[#FF8DA4]"] i {
+    color: #fff !important;
+}
+
+#admin-shell {
+    background: transparent !important;
+}
+
+#admin-shell > header {
+    height: 74px !important;
+    border-bottom: 1px solid rgba(255, 143, 199, 0.2) !important;
+    background: rgba(240, 202, 213, 0.74) !important;
+    box-shadow: 0 12px 34px rgba(255, 79, 163, 0.1);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+#panel-title {
+    color: var(--admin-ink) !important;
+    font-weight: 900 !important;
+}
+
+#admin-content {
+    max-width: 1180px !important;
+    background: transparent !important;
+}
+
+#admin-content .admin-panel {
+    animation: adminPanelFade 360ms ease both;
+}
+
+#admin-content .rounded-xl,
+#admin-content .rounded-lg,
+#modal-add-product .rounded-xl,
+#modal-add-product .rounded-lg,
+#admin-login-overlay .rounded-xl,
+#admin-login-overlay .rounded-lg {
+    border-radius: var(--admin-radius) !important;
+}
+
+#admin-content .bg-white,
+#admin-content .bg-\[\#FED8E3\],
+#modal-add-product form,
+#admin-login-overlay form,
+#admin-login-overlay .bg-white {
+    border-color: rgba(255, 143, 199, 0.2) !important;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+        rgba(255, 255, 255, 0.66) !important;
+    box-shadow: var(--admin-shadow) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+#admin-content .grid > .bg-\[\#FED8E3\],
+#admin-content #panel-dashboard > .bg-\[\#FED8E3\],
+#admin-content #panel-reports > .bg-\[\#FED8E3\] {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+#admin-content .grid > .bg-\[\#FED8E3\]:hover,
+#admin-content #panel-dashboard > .bg-\[\#FED8E3\]:hover,
+#admin-content #panel-reports > .bg-\[\#FED8E3\]:hover {
+    border-color: rgba(255, 79, 163, 0.32) !important;
+    box-shadow: var(--admin-shadow-strong) !important;
+    transform: translateY(-3px);
+}
+
+#admin-content table {
+    min-width: 760px;
+}
+
+#admin-content .overflow-hidden:has(table) {
+    overflow-x: auto !important;
+}
+
+#admin-content .report-table-card {
+    overflow-x: hidden !important;
+}
+
+#admin-content .report-table-card table {
+    min-width: 0;
+    table-layout: fixed;
+}
+
+#admin-content .report-table-card th,
+#admin-content .report-table-card td {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+#admin-content .report-table-card th:nth-child(2),
+#admin-content .report-table-card td:nth-child(2) {
+    width: 20%;
+}
+
+#admin-content .report-table-card th:nth-child(3),
+#admin-content .report-table-card td:nth-child(3) {
+    width: 34%;
+}
+
+#admin-content thead tr {
+    background: rgba(255, 214, 232, 0.74) !important;
+}
+
+#admin-content tbody tr {
+    transition: background 160ms ease;
+}
+
+#admin-content tbody tr:hover {
+    background: rgba(255, 240, 247, 0.48);
+}
+
+#admin-content input,
+#admin-content textarea,
+#admin-content select,
+#modal-add-product input,
+#modal-add-product textarea,
+#modal-add-product select,
+#admin-login-overlay input {
+    border-color: rgba(255, 79, 163, 0.34) !important;
+    border-radius: var(--admin-radius) !important;
+    color: var(--admin-ink) !important;
+    font-family: inherit;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+#admin-content input:focus,
+#admin-content textarea:focus,
+#admin-content select:focus,
+#modal-add-product input:focus,
+#modal-add-product textarea:focus,
+#modal-add-product select:focus,
+#admin-login-overlay input:focus {
+    outline: none !important;
+    border-color: var(--admin-pink) !important;
+    box-shadow: 0 0 0 4px rgba(255, 79, 163, 0.12) !important;
+}
+
+#admin-content button,
+#modal-add-product button,
+#admin-login-overlay button {
+    border-radius: var(--admin-radius) !important;
+    font-family: inherit;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease !important;
+}
+
+#admin-content button:hover,
+#modal-add-product button:hover,
+#admin-login-overlay button:hover {
+    transform: translateY(-1px);
+}
+
+#admin-content button.bg-\[\#FF8DA4\],
+#modal-add-product button.bg-\[\#FF8DA4\],
+#admin-login-overlay button[type="submit"] {
+    color: #fff !important;
+    border-color: transparent !important;
+    background: linear-gradient(135deg, var(--admin-pink), var(--admin-pink-mid)) !important;
+    box-shadow: 0 14px 28px rgba(255, 79, 163, 0.18) !important;
+}
+
+#admin-content button.bg-\[\#FF8DA4\]:hover,
+#modal-add-product button.bg-\[\#FF8DA4\]:hover,
+#admin-login-overlay button[type="submit"]:hover {
+    background: linear-gradient(135deg, #ff2f91, var(--admin-pink-mid)) !important;
+    box-shadow: 0 18px 36px rgba(255, 79, 163, 0.24) !important;
+}
+
+#modal-add-product {
+    background:
+        radial-gradient(ellipse at top left, rgba(255, 214, 232, 0.76), transparent 32rem),
+        linear-gradient(135deg, var(--admin-ice), #fff0f7) !important;
+}
+
+#modal-add-product > div {
+    background: transparent !important;
+}
+
+#modal-add-product header {
+    border-bottom-color: rgba(255, 143, 199, 0.22) !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+#admin-guard-overlay,
+#admin-login-overlay {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+@keyframes adminPanelFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    #admin-sidebar {
+        width: 220px !important;
+    }
+
+    #admin-shell {
+        padding-left: 220px !important;
+    }
+
+    #admin-content {
+        padding: 24px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .admin-body {
+        display: block !important;
+    }
+
+    #admin-sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    #admin-sidebar > div:first-child {
+        padding: 18px !important;
+    }
+
+    #admin-sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #admin-sidebar .border-t {
+        padding: 0 18px 18px !important;
+    }
+
+    #admin-shell {
+        min-height: auto !important;
+        padding-left: 0 !important;
+    }
+
+    #admin-shell > header {
+        padding-inline: 18px !important;
+    }
+
+    #admin-content {
+        padding: 18px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
